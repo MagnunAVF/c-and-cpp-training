@@ -8,9 +8,8 @@ int main()
 
     int secret_number = 42;
     int tries = 1;
-    int correct_guess = 0;
 
-    while (correct_guess == 0)
+    while (1)
     {
         printf("\nTry %d.\n", tries);
 
@@ -29,7 +28,7 @@ int main()
         if (is_correct_guess)
         {
             printf("Correct guess!\n");
-            correct_guess = 1;
+            break;
         }
         else if (is_greater_than_secret)
         {
@@ -46,5 +45,5 @@ int main()
     }
 
     printf("\nEnd of the game! \n");
-    printf("Number of guesses: %d.\n", tries - 1);
+    printf("Number of guesses: %d.\n", tries);
 }
