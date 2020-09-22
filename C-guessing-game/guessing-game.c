@@ -15,16 +15,21 @@ int main()
         printf("\nTry %d of %d.\n", i, NUMBER_OF_TRIES);
 
         int user_guess;
-        printf("What's your guess? ");
+        printf("What's your guess (Digit a number)? ");
         scanf("%d", &user_guess);
         printf("Your guess is %d.\n", user_guess);
+
+        if (user_guess < 0) {
+            printf("Your number cannot be negative!\n");
+            continue;
+        }
 
         int is_correct_guess = (user_guess == secret_number);
         int is_greater_than_secret = (user_guess > secret_number);
 
         if (is_correct_guess)
         {
-            printf("Correct guessing!\n");
+            printf("Correct guess!\n");
             break;
         }
         else if (is_greater_than_secret)
