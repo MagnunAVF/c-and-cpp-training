@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main()
 {
@@ -7,7 +8,13 @@ int main()
     printf("* Welcome to Guessing Game! *\n");
     printf("*****************************\n");
 
-    int secret_number = 42;
+    // seeds rand with epoch time
+    int epoch_time = time(0);
+    srand(epoch_time);
+
+    // random number between 0 - 99
+    int secret_number = rand() % 100;
+
     int tries = 1;
     double score = 1000;
 
@@ -20,7 +27,8 @@ int main()
         scanf("%d", &user_guess);
         printf("Your guess is %d.\n", user_guess);
 
-        if (user_guess < 0) {
+        if (user_guess < 0)
+        {
             printf("Your number cannot be negative!\n");
         }
 
