@@ -18,7 +18,31 @@ int main()
     int tries = 1;
     double score = 1000;
 
-    while (1)
+    int is_correct_guess = 0;
+
+    int numberOfTries;
+    int level;
+    printf("Select the difficulty level\n");
+    printf("(1) Easy   (2) Normal   (3) Hard\n\n");
+    printf("Choose: ");
+    scanf("%d", &level);
+
+    switch (level)
+    {
+    case 1:
+        numberOfTries = 20;
+        break;
+
+    case 2:
+        numberOfTries = 15;
+        break;
+
+    default:
+        numberOfTries = 6;
+        break;
+    }
+
+    for (int i = 0; i < numberOfTries; i++)
     {
         printf("\nTry %d.\n", tries);
 
@@ -32,12 +56,11 @@ int main()
             printf("Your number cannot be negative!\n");
         }
 
-        int is_correct_guess = (user_guess == secret_number);
+        is_correct_guess = (user_guess == secret_number);
         int is_greater_than_secret = (user_guess > secret_number);
 
         if (is_correct_guess)
         {
-            printf("Correct guess!\n");
             break;
         }
         else if (is_greater_than_secret)
@@ -58,6 +81,15 @@ int main()
     }
 
     printf("\nEnd of the game! \n");
-    printf("Number of guesses: %d.\n", tries);
-    printf("Game Score: %.3f\n", score);
+
+    if (is_correct_guess)
+    {
+        printf("You Win ! Correct guess.\n");
+        printf("Number of guesses: %d.\n", tries);
+        printf("Game Score: %.3f\n", score);
+    }
+    else
+    {
+        printf("You Loose! Try again.\n");
+    }
 }
