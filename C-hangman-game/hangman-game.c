@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <string.h>
 
+void greetings() {
+    printf("**************************\n");
+    printf("***    Hangman Game    ***\n");
+    printf("**************************\n\n");
+}
+
+void makeAGuess(char guesses[26], int tries) {
+    char guess;
+    scanf(" %c", &guess);
+
+    guesses[tries] = guess;
+}
+
 int main() {
     char secretword[20];
     sprintf(secretword, "MELANCIA");
@@ -10,6 +23,8 @@ int main() {
 
     char guesses[26];
     int tries = 0;
+
+    greetings();
 
     do {
         for(int i = 0; i < strlen(secretword); i++) {
@@ -29,10 +44,7 @@ int main() {
         }
         printf("\n");
 
-        char guess;
-        scanf(" %c", &guess);
-
-        guesses[tries] = guess;
+        makeAGuess(guesses, tries);
         tries++;
 
     } while(!hit && !hanged);
