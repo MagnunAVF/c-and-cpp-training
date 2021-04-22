@@ -7,11 +7,12 @@ void greetings() {
     printf("**************************\n\n");
 }
 
-void makeAGuess(char guesses[26], int tries) {
+void makeAGuess(char guesses[26], int* tries) {
     char guess;
     scanf(" %c", &guess);
 
-    guesses[tries] = guess;
+    guesses[(*tries)] = guess;
+    (*tries)++;
 }
 
 int main() {
@@ -44,8 +45,7 @@ int main() {
         }
         printf("\n");
 
-        makeAGuess(guesses, tries);
-        tries++;
+        makeAGuess(guesses, &tries);
 
     } while(!hit && !hanged);
 }
