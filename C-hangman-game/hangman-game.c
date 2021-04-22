@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
+char secretword[20];
+char guesses[26];
+int tries = 0;
+
 void greetings()
 {
     printf("**************************\n");
@@ -8,16 +12,16 @@ void greetings()
     printf("**************************\n\n");
 }
 
-void makeAGuess(char guesses[26], int *tries)
+void makeAGuess()
 {
     char guess;
     scanf(" %c", &guess);
 
-    guesses[(*tries)] = guess;
-    (*tries)++;
+    guesses[tries] = guess;
+    tries++;
 }
 
-int alreadyTriedThisGuess(char letter, char guesses[26], int tries)
+int alreadyTriedThisGuess(char letter)
 {
     int finded = 0;
 
@@ -33,11 +37,11 @@ int alreadyTriedThisGuess(char letter, char guesses[26], int tries)
     return finded;
 }
 
-void drawHangman(char secretword[20], char guesses[26], int tries)
+void drawHangman()
 {
     for (int i = 0; i < strlen(secretword); i++)
     {
-        int finded = alreadyTriedThisGuess(secretword[i], guesses, tries);
+        int finded = alreadyTriedThisGuess(secretword[i]);
 
         if (finded)
         {
@@ -51,25 +55,22 @@ void drawHangman(char secretword[20], char guesses[26], int tries)
     printf("\n");
 }
 
-void chooseSecretword(char secretword[20])
+void chooseSecretword()
 {
     sprintf(secretword, "MELANCIA");
 }
 
 int main()
 {
-    char secretword[20];
-    char guesses[26];
     int hit = 0;
     int hanged = 0;
-    int tries = 0;
 
-    chooseSecretword(secretword);
+    chooseSecretword();
     greetings();
 
     do
     {
-        drawHangman(secretword, guesses, tries);
-        makeAGuess(guesses, &tries);
+        drawHangman();
+        makeAGuess();
     } while (!hit && !hanged);
 }
